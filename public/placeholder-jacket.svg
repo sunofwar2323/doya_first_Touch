@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" fill="none">
+  <rect width="400" height="500" fill="#0a0a0a"/>
+  <path d="M200 120 L280 180 L280 380 L120 380 L120 180 Z" stroke="#d4af37" stroke-width="2" fill="none" opacity="0.4"/>
+  <text x="200" y="430" text-anchor="middle" fill="#555" font-family="serif" font-size="14">DOYA FIRST TOUCH</text>
+</svg>
