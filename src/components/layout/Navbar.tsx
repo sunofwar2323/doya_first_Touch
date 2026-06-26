@@ -4,15 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Heart, ShoppingBag, Menu, X, User } from "lucide-react";
-import { useShop } from "@/context/ShopContext";
+import { Search, Menu, X } from "lucide-react";
 import { SearchOverlay } from "@/components/layout/SearchOverlay";
 import { JacketProduct } from "@/types/jacket";
 import { cn } from "@/lib/utils";
 
 const leftLinks = [
-  { href: "/collections/jackets", label: "New Arrivals" },
-  { href: "/collections/jackets", label: "Jackets" },
   { href: "/collections/jackets", label: "Collections" },
   { href: "/collections/jackets", label: "Best Sellers" },
 ];
@@ -25,7 +22,6 @@ export function Navbar({ jackets = [] }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const { cartCount, wishlist, mounted } = useShop();
   const pathname = usePathname();
   const isHome = pathname === "/";
 
@@ -85,14 +81,17 @@ export function Navbar({ jackets = [] }: NavbarProps) {
             <Link
               href="/"
               className={cn(
-                "shrink-0 transition-opacity duration-300 absolute left-1/2 -translate-x-1/2",
+                "shrink-0 transition-opacity duration-300 absolute left-1/2 -translate-x-1/2 text-center",
                 showLogo ? "opacity-100" : "opacity-0 pointer-events-none"
               )}
               aria-hidden={!showLogo}
               tabIndex={showLogo ? 0 : -1}
             >
-              <span className="font-serif text-lg sm:text-xl lg:text-2xl font-bold tracking-[0.22em] text-black">
+              <span className="font-serif text-base sm:text-lg lg:text-xl font-bold tracking-[0.22em] text-black block">
                 DOYA
+              </span>
+              <span className="text-[8px] sm:text-[9px] tracking-[0.3em] uppercase text-black/60 block mt-0.5">
+                First Touch
               </span>
             </Link>
 
@@ -113,43 +112,6 @@ export function Navbar({ jackets = [] }: NavbarProps) {
               >
                 <Search className="h-4 w-4" />
               </button>
-
-              <Link
-                href="/contact"
-                className="hidden lg:flex items-center gap-1.5 text-black hover:text-muted transition-colors"
-                aria-label="Account"
-              >
-                <User className="h-4 w-4 shrink-0" />
-                <span className="label-caps hidden xl:inline">Account</span>
-              </Link>
-
-              <Link
-                href="/wishlist"
-                className="relative hidden sm:flex items-center gap-1.5 text-black hover:text-muted transition-colors"
-                aria-label="Wishlist"
-              >
-                <Heart className="h-4 w-4 shrink-0" />
-                <span className="label-caps hidden xl:inline">Wishlist</span>
-                {mounted && wishlist.length > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 min-w-4 h-4 px-0.5 bg-black text-white text-[8px] font-medium flex items-center justify-center">
-                    {wishlist.length}
-                  </span>
-                )}
-              </Link>
-
-              <Link
-                href="/cart"
-                className="relative flex items-center gap-1.5 text-black hover:text-muted transition-colors"
-                aria-label="Cart"
-              >
-                <ShoppingBag className="h-4 w-4 shrink-0" />
-                <span className="label-caps hidden xl:inline">Cart</span>
-                {mounted && cartCount > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 min-w-4 h-4 px-0.5 bg-black text-white text-[8px] font-medium flex items-center justify-center">
-                    {cartCount}
-                  </span>
-                )}
-              </Link>
             </div>
           </div>
         </div>
@@ -167,7 +129,12 @@ export function Navbar({ jackets = [] }: NavbarProps) {
           >
             <div className="flex flex-col h-full p-5 sm:p-6">
               <div className="flex justify-between items-center mb-10 pt-2">
-                <span className="font-serif text-xl font-bold tracking-[0.2em]">DOYA</span>
+                <div className="text-center">
+                  <span className="font-serif text-xl font-bold tracking-[0.2em] block">DOYA</span>
+                  <span className="text-[9px] tracking-[0.3em] uppercase text-black/60 block mt-0.5">
+                    First Touch
+                  </span>
+                </div>
                 <button
                   onClick={() => setMobileOpen(false)}
                   className="p-1"
@@ -194,17 +161,6 @@ export function Navbar({ jackets = [] }: NavbarProps) {
                   </motion.div>
                 ))}
               </nav>
-              <div className="mt-auto flex gap-6 pb-6 pt-8 border-t border-border">
-                <Link href="/contact" onClick={() => setMobileOpen(false)}>
-                  <User className="h-5 w-5" />
-                </Link>
-                <Link href="/wishlist" onClick={() => setMobileOpen(false)}>
-                  <Heart className="h-5 w-5" />
-                </Link>
-                <Link href="/cart" onClick={() => setMobileOpen(false)}>
-                  <ShoppingBag className="h-5 w-5" />
-                </Link>
-              </div>
             </div>
           </motion.div>
         )}

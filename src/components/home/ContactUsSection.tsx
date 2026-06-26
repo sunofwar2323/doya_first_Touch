@@ -11,13 +11,13 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  CONTACT_EMAIL,
+  CONTACT_LOCATION,
+  CONTACT_PHONES,
+} from "@/lib/contact";
 
-const PHONE_DISPLAY = process.env.NEXT_PUBLIC_CONTACT_PHONE ?? "+975 XXXXXXXX";
-const PHONE_RAW = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "97500000000").replace(
-  /\D/g,
-  ""
-);
-const EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@doyafirsttouch.com";
+const EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? CONTACT_EMAIL;
 
 interface FormData {
   fullName: string;
@@ -158,8 +158,7 @@ export function ContactUsSection() {
     {
       icon: Phone,
       label: "Phone",
-      value: PHONE_DISPLAY,
-      href: `tel:+${PHONE_RAW}`,
+      phones: CONTACT_PHONES,
     },
     {
       icon: Mail,
@@ -170,7 +169,7 @@ export function ContactUsSection() {
     {
       icon: MapPin,
       label: "Location",
-      value: "Bhutan",
+      value: CONTACT_LOCATION,
     },
     {
       icon: Clock,
@@ -241,7 +240,19 @@ export function ContactUsSection() {
                     <p className="text-[10px] tracking-[0.2em] uppercase text-[#C9A45C] font-medium mb-1">
                       {item.label}
                     </p>
-                    {item.href ? (
+                    {"phones" in item && item.phones ? (
+                      <div className="space-y-1">
+                        {item.phones.map((phone) => (
+                          <a
+                            key={phone.display}
+                            href={phone.tel}
+                            className="block text-[#1a1410] font-medium hover:text-[#C9A45C] transition-colors"
+                          >
+                            {phone.display}
+                          </a>
+                        ))}
+                      </div>
+                    ) : item.href ? (
                       <a
                         href={item.href}
                         className="text-[#1a1410] font-medium hover:text-[#C9A45C] transition-colors"

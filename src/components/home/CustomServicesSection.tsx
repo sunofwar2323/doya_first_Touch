@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { WHATSAPP_NUMBER } from "@/lib/contact";
 
 const FEATURES = [
   {
@@ -41,7 +42,7 @@ const FEATURES = [
 ] as const;
 
 function getWhatsAppLink(message: string): string {
-  const phone = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "97500000000").replace(
+  const phone = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? WHATSAPP_NUMBER).replace(
     /\D/g,
     ""
   );

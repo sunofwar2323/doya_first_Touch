@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Facebook, Instagram, MessageCircle } from "lucide-react";
+import { WHATSAPP_NUMBER } from "@/lib/contact";
 
 const footerLinks = {
   shop: [
@@ -86,7 +87,7 @@ export function Footer() {
                 <Facebook className="h-3.5 w-3.5" />
               </a>
               <a
-                href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "97500000000").replace(/\D/g, "")}`}
+                href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? WHATSAPP_NUMBER).replace(/\D/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 border border-white/20 hover:border-white transition-colors"

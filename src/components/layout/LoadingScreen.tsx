@@ -29,6 +29,9 @@ export function LoadingScreen() {
             <span className="font-serif text-3xl tracking-[0.3em] font-semibold text-black block">
               DOYA
             </span>
+            <span className="text-[10px] tracking-[0.35em] uppercase text-black/60 block mt-2">
+              First Touch
+            </span>
             <motion.div
               className="mt-6 mx-auto w-16 h-px bg-black/10 relative overflow-hidden"
               initial={{ opacity: 0 }}

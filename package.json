@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "sync:products": "rm -rf public/product && cp -R Products public/product",
+    "predev": "npm run sync:products",
+    "prebuild": "npm run sync:products",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",

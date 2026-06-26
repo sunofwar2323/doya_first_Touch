@@ -1,3 +1,5 @@
+import { WHATSAPP_NUMBER } from "@/lib/contact";
+
 export function slugify(text: string): string {
   return text
     .toLowerCase()
@@ -24,7 +26,7 @@ export function getWhatsAppUrl(
   productNumber: string = "",
   options?: { size?: string; color?: string }
 ): string {
-  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "97500000000";
+  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? WHATSAPP_NUMBER;
   let text = `Hello, I'm interested in this product: ${productName}. Please share availability, sizes, and price.`;
   if (options?.size) text += ` Selected size: ${options.size}.`;
   if (options?.color) text += ` Color: ${options.color}.`;
